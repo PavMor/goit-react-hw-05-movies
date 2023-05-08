@@ -1,6 +1,6 @@
 import s from './MovieDetailsPage.module.css';
 import Container from 'components/Container/Container';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { fetchMoviesDetails } from 'services/movies-api';
@@ -81,7 +81,9 @@ export default function MovieDetailsPage() {
             <p className={s.cast}>Cast</p>
           </NavLink>
           <hr />
-          <Outlet />
+          <Suspense fallback={'Loading ...'}>
+            <Outlet />
+         </Suspense>
         </div>
       </Container>
     </>
